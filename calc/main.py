@@ -1,15 +1,19 @@
 import numpy
+import math
 
 # TODO read input with basic parseing
-
-
 def get_input():
-    return True
+    text = input(">")
+    for i in text:
+        if i not in "1234567890-+/*()[]^|":
+            print("symbol not recognized", i)
+            return "ERROR"
+    return text
 
 
 # TODO build AST and calculations
 def calculate(text):
-    return text
+    return exec(f"print({text})")
 
 
 def main():

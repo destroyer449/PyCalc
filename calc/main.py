@@ -1,27 +1,30 @@
 import numpy
-import math
+from math import *
+import sys
 
 # TODO read input with basic parseing
 def get_input():
     text = input(">")
+    if text == "quit":
+        print("Exiting")
+        sys.exit()
     for i in text:
-        if i not in "1234567890-+/*()[]^|":
+        if not (i.isalnum or i in "-+/*()[]^|,;"):
             print("symbol not recognized", i)
-            return "ERROR"
+            return False
     return text
 
 
 # TODO build AST and calculations
 def calculate(text):
+    if text == False:
+        return "ERROR"
     return exec(f"print({text})")
 
 
 def main():
     while True:
         text = get_input()
-        if text == "quit":
-            print("Leave; see if I care!")
-            break
         result = calculate(text)
         if result in ["NaN", "Inf", "-Inf", "ERROR"]:
             print("Calculation failed")
